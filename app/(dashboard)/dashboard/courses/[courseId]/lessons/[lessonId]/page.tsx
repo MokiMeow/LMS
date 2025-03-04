@@ -40,7 +40,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             {/* Loom Embed Video if loomUrl is provided */}
             {lesson.loomUrl && <LoomEmbed shareUrl={lesson.loomUrl} />}
 
-            {/* Lesson Content */}
+            {/* Lesson Content *//* Hello World */}
             {lesson.content && (
               <div>
                 <h2 className="text-xl font-semibold mb-4">Lesson Notes</h2>
