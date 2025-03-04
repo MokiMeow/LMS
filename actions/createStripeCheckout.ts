@@ -42,10 +42,10 @@ export async function createStripeCheckout(courseId: string, userId: string) {
     if (!course.price && course.price !== 0) {
       throw new Error("Course price is not set");
     }
-    const priceInCents = Math.round(course.price * 100);
+    const priceInPaise = Math.round(course.price * 100);
 
     // if course is free, create enrollment and redirect to course page (BYPASS STRIPE CHECKOUT)
-    if (priceInCents === 0) {
+    if (priceInPaise === 0) {
       await createEnrollment({
         studentId: user._id,
         courseId: course._id,
@@ -67,13 +67,13 @@ export async function createStripeCheckout(courseId: string, userId: string) {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "inr",
             product_data: {
               name: title,
               description: description,
               images: [urlFor(image).url() || ""],
             },
-            unit_amount: priceInCents,
+            unit_amount: priceInPaise,
           },
           quantity: 1,
         },
